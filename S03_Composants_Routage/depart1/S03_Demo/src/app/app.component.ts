@@ -15,7 +15,7 @@ import { Component, OnInit } from '@angular/core';
       image ?: string;
 
   constructor(public http : HttpClient){}
-  
+
   // // VERSION A
       ngOnInit():void{
         this.http.get<any>("http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=63a87ada7b7a5d9dc0e99cb820a426cc&artist=Cher&album=Believe&format=json")
@@ -25,7 +25,7 @@ import { Component, OnInit } from '@angular/core';
           this.image = x.album.image[2]["#text"];
           }
         );
-    
+
   }
 
 }
