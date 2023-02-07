@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RedComponent implements OnInit {
 
-  sousRouges : string[] = ["cramoisi", "écarlate", "cerise", "bordeaux","vermeil"];
+  sousRouges : string[] = ["cramoisi", "écarlate", "cerise", "bordeaux","vermeil","HAHAHAHA"];
   constructor() { }
 
   ngOnInit(): void {
