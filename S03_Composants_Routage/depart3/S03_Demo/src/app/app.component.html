@@ -341,14 +341,17 @@
 <div>
 <h1>Je suis le Composant principal</h1>
 <div> 
-  <button type="button" class="bnt btn-lg m-2 btnBleu">Bleu</button>
-  <button type="button" class="bnt btn-lg m-2 btnRouge">Rouge</button>
-  <button type="button" class="bnt btn-lg m-2  btnJaune">Jaune</button>
-  <button type="button" class="bnt btn-lg m-2  btnJaune">Jaune avec paramètre</button>
-  <button type="button" class="bnt btn-lg px-2 btnRose">Rose</button>
+  <button [routerLink]="['bleu']" type="button" class="bnt btn-lg m-2 btnBleu">Bleu</button>
+  <button [routerLink]="['red']" type="button" class="bnt btn-lg m-2 btnRouge">Rouge</button>
+  <button [routerLink]="['jaune']" type="button" class="bnt btn-lg m-2  btnJaune">Jaune</button>
+  <button [routerLink]="['jaune','Patate']" type="button" class="bnt btn-lg m-2  btnJaune">Jaune avec paramètre</button>
+  <button [routerLink]="['rose']" type="button" class="bnt btn-lg px-2 btnRose">Rose</button>
 </div>
 
-<app-red ></app-red>
+<!-- //patate c'est un paramètre -->
+
+<!-- <app-red ></app-red> -->
+<router-outlet></router-outlet>
 
 
   <main class="my-5">

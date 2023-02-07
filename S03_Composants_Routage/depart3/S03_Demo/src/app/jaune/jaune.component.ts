@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-jaune',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./jaune.component.css']
 })
 export class JauneComponent implements OnInit {
+  [x: string] : any; //paramètre par URL donc crochet
 
-  constructor() { }
+  legume : string | null=null;
+
+  
+  constructor(public route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.legume=this.route.snapshot.paramMap.get("legume");
   }
 
 }
