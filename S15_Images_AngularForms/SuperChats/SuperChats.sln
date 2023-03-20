@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperChatsWebAPI", "SuperChatsWebAPI\SuperChatsWebAPI.csproj", "{BB81B2B2-A373-4259-9A1F-70BEA74F48B3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BB81B2B2-A373-4259-9A1F-70BEA74F48B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB81B2B2-A373-4259-9A1F-70BEA74F48B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB81B2B2-A373-4259-9A1F-70BEA74F48B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB81B2B2-A373-4259-9A1F-70BEA74F48B3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E71FB440-8B67-48AF-A52A-B9EF101B97E7}
+	EndGlobalSection
+EndGlobal

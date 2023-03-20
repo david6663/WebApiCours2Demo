@@ -1,0 +1,12 @@
+<br />
+
+<button (click)="getCats()">Get Chats</button>
+
+<div *ngFor="let cat of cats">{{cat.name}}</div>
+
+<br />
+
+<form (ngSubmit)="sendCat()">
+  <input type="text" name="newCat" placeholder="Nouveau Chat" [(ngModel)]="catName" />
+  <input type="submit" value="Sauvegarder">
+</form>
