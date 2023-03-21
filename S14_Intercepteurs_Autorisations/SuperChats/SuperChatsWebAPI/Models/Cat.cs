@@ -12,6 +12,6 @@ namespace SuperChatsWebAPI.Models
         public int VillagerID { get; set; }
 
         [JsonIgnore]
-        public virtual Villager Villager { get; set; }   //si on n'a pas mis ?, pour le post, faut choisir un villager, assumer que ca existe. Donc, Jsonignore PAS villagerID
+        public virtual Villager? Villager { get; set; }   //si on n'a pas mis ?, pour le post, faut choisir un villager, assumer que ca existe. Donc, Jsonignore PAS villagerID
     }
 }

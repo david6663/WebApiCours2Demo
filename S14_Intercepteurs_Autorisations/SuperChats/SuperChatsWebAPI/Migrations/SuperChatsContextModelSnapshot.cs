@@ -174,7 +174,7 @@ namespace SuperChatsWebAPI.Migrations
 
                     b.HasIndex("VillagerID");
 
-                    b.ToTable("Cat");
+                    b.ToTable("Cat", (string)null);
                 });
 
             modelBuilder.Entity("SuperChatsWebAPI.Models.User", b =>
@@ -267,7 +267,7 @@ namespace SuperChatsWebAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Villager");
+                    b.ToTable("Villager", (string)null);
                 });
 
             modelBuilder.Entity("UserVillager", b =>
@@ -282,7 +282,7 @@ namespace SuperChatsWebAPI.Migrations
 
                     b.HasIndex("VillagerFriendsId");
 
-                    b.ToTable("UserVillager");
+                    b.ToTable("UserVillager", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

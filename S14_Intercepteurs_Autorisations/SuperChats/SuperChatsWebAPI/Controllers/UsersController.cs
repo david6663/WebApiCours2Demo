@@ -35,7 +35,8 @@ namespace SuperChatsWebAPI.Controllers
             User user = new User()
             {
                 UserName = registerDTO.Username,
-                Email = registerDTO.Email
+                Email = registerDTO.Email,
+                NickName=registerDTO.NickName
             };
 
             IdentityResult identityResult = await UserManager.CreateAsync(user, registerDTO.Password);
@@ -67,7 +68,7 @@ namespace SuperChatsWebAPI.Controllers
 
                 JwtSecurityToken token = new JwtSecurityToken(
                      issuer: "http://localhost:4200",
-                     audience: "http://localhost:7096",
+                     audience: "https://localhost:7096",
                      claims: authClaims,
                      expires: DateTime.Now.AddMinutes(30),
                      signingCredentials: new SigningCredentials(key, SecurityAlgorithms.HmacSha256)

@@ -12,7 +12,7 @@ using SuperChatsWebAPI.Models;
 
 namespace SuperChatsWebAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[Action]")]
     [ApiController]
     public class VillagersController : ControllerBase
     {
@@ -85,7 +85,8 @@ namespace SuperChatsWebAPI.Controllers
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             User user = await UserManager.FindByIdAsync(userId);
             villager.UserFriends = new List<User>();
-            villager.UserFriends.Add(user);
+            if(user!=null)villager.UserFriends.Add(user);
+            //villager.SesChats = new List<Cat>();
 
             _context.Villager.Add(villager);
             await _context.SaveChangesAsync();

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +11,7 @@ using SuperChatsWebAPI.Models;
 
 namespace SuperChatsWebAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[Action]")]
     [ApiController]
     public class CatsController : ControllerBase
     {
@@ -23,7 +24,8 @@ namespace SuperChatsWebAPI.Controllers
 
         // GET: api/Cats
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Cat>>> GetCat()
+        [AllowAnonymous]
+        public async Task<ActionResult<IEnumerable<Cat>>> GetCats()
         {
             return await _context.Cat.ToListAsync();
         }
@@ -76,8 +78,12 @@ namespace SuperChatsWebAPI.Controllers
         // POST: api/Cats
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<Cat>> PostCat(Cat cat)
         {
+            Villager villager = new Villager();
+            villager = await _context.Villager.FindAsync(cat.VillagerID);
+            cat.Villager = villager;
             _context.Cat.Add(cat);
             await _context.SaveChangesAsync();
 

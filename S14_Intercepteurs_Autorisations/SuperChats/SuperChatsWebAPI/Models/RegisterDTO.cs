@@ -17,5 +17,8 @@ namespace SuperChatsWebAPI.Models
 
         [Required]
         public string PasswordConfirm { get; set; }
+
+        [Required]
+        public string NickName { get; set; }
     }
 }

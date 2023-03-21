@@ -1,9 +1,11 @@
+<button (click)="loginUser()">Login</button>
 <br />
 
 <button (click)="getCats()">Get Chats</button>
 
 <div *ngFor="let cat of cats">{{cat.name}}</div>
 
+<button (click)="getVillagers()">Get Villagers</button>
 <br />
 
 <form (ngSubmit)="sendCat()">

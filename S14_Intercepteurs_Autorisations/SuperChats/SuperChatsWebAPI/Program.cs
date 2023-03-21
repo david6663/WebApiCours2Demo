@@ -13,6 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<SuperChatsContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SuperChatsContext") ?? throw new InvalidOperationException("Connection string 'SuperChatsContext' not found."))
     .UseLazyLoadingProxies());
+
 builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<SuperChatsContext>();
 builder.Services.Configure<IdentityOptions>(options =>
 {
@@ -37,12 +38,20 @@ builder.Services.AddAuthentication(options =>    //Faut faire après configure id
         ValidateAudience = true,
         ValidateIssuer = true,
         ValidAudience = "http://localhost:4200",
-        ValidIssuer = "http://localhost:7096",
+        ValidIssuer = "https://localhost:7096",
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"]))   //JWT:Secret c'est dans appsettings.json
     };
 });
 
 builder.Services.AddControllers();
+
+
+builder.Services.AddCors(options => {
+    options.AddPolicy("Allowall", builder =>
+    {
+        builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+    });
+});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -58,6 +67,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseCors("Allowall");
 app.UseAuthentication();
 app.UseAuthorization();
 
