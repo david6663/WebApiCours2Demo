@@ -23,14 +23,14 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Password.RequireNonAlphanumeric = false;
 });
 
-builder.Services.AddAuthentication(options =>
+builder.Services.AddAuthentication(options =>    //Faut faire après configure identityoption
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
 }).AddJwtBearer(options =>
 {
-    options.SaveToken = true;
+    options.SaveToken = true;      // pour permettre au user de save ou pas
     options.RequireHttpsMetadata = false; // En développement seulement
     options.TokenValidationParameters = new TokenValidationParameters()
     {
@@ -38,7 +38,7 @@ builder.Services.AddAuthentication(options =>
         ValidateIssuer = true,
         ValidAudience = "http://localhost:4200",
         ValidIssuer = "http://localhost:7096",
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"]))
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"]))   //JWT:Secret c'est dans appsettings.json
     };
 });
 
