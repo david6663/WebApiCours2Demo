@@ -11,5 +11,8 @@ namespace SuperChatsWebAPI.Models
 
         [JsonIgnore]
         public virtual List<User> UserFriends { get; set; }
+       
+        [JsonIgnore]
+        public virtual List<Cat> SesChats { get; set; }
     }
 }
