@@ -11,7 +11,7 @@ builder.Services.AddDbContext<SuperChatsContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SuperChatsContext") ?? throw new InvalidOperationException("Connection string 'SuperChatsContext' not found."))
     .UseLazyLoadingProxies());
 builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<SuperChatsContext>();
-builder.Services.Configure<IdentityOptions>(options =>
+builder.Services.Configure<IdentityOptions>(options =>       //pour les requirements des mots de passes
 {
     options.Password.RequireDigit = false;
     options.Password.RequiredLength = 5;
@@ -25,6 +25,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+//app c'est les pipelines
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -36,8 +38,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthentication();
-app.UseAuthorization();
+app.UseAuthentication();  //doit etre avant authorization
+app.UseAuthorization();  //déjà là de base
 
 app.MapControllers();
 
