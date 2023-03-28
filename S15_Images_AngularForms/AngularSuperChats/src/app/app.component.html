@@ -10,3 +10,21 @@
   <input type="text" name="newCat" placeholder="Nouveau Chat" [(ngModel)]="catName" />
   <input type="submit" value="Sauvegarder">
 </form>
+
+<hr>
+
+<form enctype="multipart/form-data" method="POST" action="https://localhost:7096/api/pictures">
+  <input type="file" name="image" accept="image/*">
+  <button type="input">Envoyer</button>
+</form>
+
+<hr>
+
+<!-- <input #fileupload type="file" name="image" accept="image/*" (change)="uploadPicture(fileupload.files[0])"> -->
+
+<hr>
+<form (submit)="uploadViewChild()">
+  <input #fileuploadviewchild type="file" name="image" accept="image/*">
+  <button type="submit">Envoyer</button>
+</form>
+{{progress}}%

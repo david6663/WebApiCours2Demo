@@ -66,8 +66,8 @@ namespace SuperChatsWebAPI.Controllers
 
 
                 JwtSecurityToken token = new JwtSecurityToken(
-                     issuer: "http://localhost:4200",
-                     audience: "http://localhost:7096",
+                     issuer: "https://localhost:7096",
+                     audience: "http://localhost:4200",
                      claims: authClaims,
                      expires: DateTime.Now.AddMinutes(30),
                      signingCredentials: new SigningCredentials(key, SecurityAlgorithms.HmacSha256)
@@ -85,6 +85,8 @@ namespace SuperChatsWebAPI.Controllers
                     });
             }
         }
+
+        //Manque le login token, S12 page 39
 
         private SymmetricSecurityKey SymmetricSecurityKey(byte[] bytes)
         {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -23,7 +24,7 @@ namespace SuperChatsWebAPI.Controllers
 
         // GET: api/Cats
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Cat>>> GetCat()
+        public async Task<ActionResult<IEnumerable<Cat>>> GetCats()
         {
             return await _context.Cat.ToListAsync();
         }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SuperChatsWebAPI.Data;
 
@@ -11,9 +12,10 @@ using SuperChatsWebAPI.Data;
 namespace SuperChatsWebAPI.Migrations
 {
     [DbContext(typeof(SuperChatsContext))]
-    partial class SuperChatsContextModelSnapshot : ModelSnapshot
+    [Migration("20230328010755_AddPicture")]
+    partial class AddPicture
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

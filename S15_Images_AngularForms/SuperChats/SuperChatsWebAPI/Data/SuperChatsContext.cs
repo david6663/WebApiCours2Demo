@@ -18,5 +18,7 @@ namespace SuperChatsWebAPI.Data
         public DbSet<Cat> Cat { get; set; } = default!;
 
         public DbSet<SuperChatsWebAPI.Models.Villager> Villager { get; set; }
+
+        public DbSet<SuperChatsWebAPI.Models.Picture>? Picture { get; set; }
     }
 }
