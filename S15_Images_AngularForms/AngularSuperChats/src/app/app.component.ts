@@ -38,7 +38,7 @@ export class AppComponent {
     password : "Password!2345",
     passwordConfirm : "Password!2345"
    };
-   
+
     this.http.post<any>('https://localhost:7096/api/Users', user).subscribe(x => { console.log(x);
     localStorage.setItem("authToken", x.token);
     });
@@ -53,11 +53,11 @@ export class AppComponent {
       })
     };
 
-    this.http.get<Villager[]>('https://localhost:7096/api/Villagers/GetVillager', httpOptions).subscribe(res => 
+    this.http.get<Villager[]>('https://localhost:7096/api/Villagers/GetVillager', httpOptions).subscribe(res =>
     {
       console.log(res);
       this.villagers = res;
-    });  
+    });
   }
 
   saveVillager() {
@@ -69,10 +69,10 @@ export class AppComponent {
       })
     };
 
-    this.http.post<Villager>("https://localhost:7096/api/Villagers/PostVillager", this.villager, httpOptions).subscribe(res => 
+    this.http.post<Villager>("https://localhost:7096/api/Villagers/PostVillager", this.villager, httpOptions).subscribe(res =>
     {
       console.log(res);
-    }) 
+    })
   }
 
 
@@ -84,7 +84,17 @@ export class AppComponent {
   }
 
   getCats() {
-    this.http.get<Cat[]>('https://localhost:7096/api/Cats/GetCats').subscribe(res => this.cats = res);
+    this.http.get<Cat[]>('https://localhost:7096/api/Cats').subscribe(res => {console.log(res);this.cats = res});
   }
 
+
+  /////////////////////////////////////////////
+  /////pour la version avec typescript
+  uploadPicture(file?:File):void{
+    if(file!=null && file!=undefined)
+    {let formData=new FormData();
+    formData.append('file', file, file.name);
+
+    this.http.post<any>("https://localhost:7096/api/pictures", formData).subscribe(x=>{console.log(x);})}
+  }
 }
