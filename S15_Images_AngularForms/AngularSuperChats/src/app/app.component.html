@@ -14,12 +14,7 @@
 <hr><hr>
 
 
-<h2>Aucun code TypeScript impliqué, pas besoin de HttpClient</h2>
-
-<form enctype="multipart/form-data" method="POST" action="https://localhost:7096/api/Pictures">
-  <input type="file" name="image" accept="image/*">
-  <button type="input">ENvoyer</button>
+<form (submit)="uploadViewChild()">
+  <input #fileuploadviewchild type="file" name="image" accept="image/*">
+  <button type="submit">Envoyer</button>
 </form>
-
-<h2>On implique TypeScript et HttpClient</h2>
-<input #fileupload type="file" name="image" accept="image/*" (change)="uploadPicture(fileupload?.files[0])">

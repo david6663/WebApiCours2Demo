@@ -22,15 +22,15 @@ namespace SuperChatsWebAPI.Controllers
         }
 
         // GET: api/Pictures
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Picture>>> GetPicture()
-        {
-          if (_context.Picture == null)
-          {
-              return NotFound();
-          }
-            return await _context.Picture.ToListAsync();
-        }
+        //[HttpGet]
+        //public async Task<ActionResult<IEnumerable<Picture>>> GetPicture()
+        //{
+        //  if (_context.Picture == null)
+        //  {
+        //      return NotFound();
+        //  }
+        //    return await _context.Picture.ToListAsync();
+        //}
 
         // GET: api/Pictures/5
         [HttpGet("{id}")]
@@ -47,54 +47,48 @@ namespace SuperChatsWebAPI.Controllers
                 return NotFound();
             }
 
-            return picture;
+            byte[] bytes = System.IO.File.ReadAllBytes(Directory.GetCurrentDirectory() + "/wwwroot/Images/" + picture.FileName);
+
+            return File(bytes,picture.MimeType);
         }
 
         // PUT: api/Pictures/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutPicture(int id, Picture picture)
-        {
-            if (id != picture.Id)
-            {
-                return BadRequest();
-            }
+        //[HttpPut("{id}")]
+        //public async Task<IActionResult> PutPicture(int id, Picture picture)
+        //{
+        //    if (id != picture.Id)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            _context.Entry(picture).State = EntityState.Modified;
+        //    _context.Entry(picture).State = EntityState.Modified;
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!PictureExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //    try
+        //    {
+        //        await _context.SaveChangesAsync();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!PictureExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-            return NoContent();
-        }
+        //    return NoContent();
+        //}
 
         // POST: api/Pictures
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         [DisableRequestSizeLimit]
-        public async Task<ActionResult<Picture>> PostPicture(/*Picture picture*/)
+        public async Task<ActionResult<Picture>> PostPicture()
         {
-          //if (_context.Picture == null)
-          //{
-          //    return Problem("Entity set 'SuperChatsContext.Picture'  is null.");
-          //}
-          //  _context.Picture.Add(picture);
-          //  await _context.SaveChangesAsync();
-
-          //  return CreatedAtAction("GetPicture", new { id = picture.Id }, picture);
           try
             {
                 IFormCollection formCollection = await Request.ReadFormAsync();
@@ -105,7 +99,7 @@ namespace SuperChatsWebAPI.Controllers
                 picture.FileName=Guid.NewGuid().ToString()+Path.GetExtension(file.FileName);
                 picture.MimeType = file.ContentType;
 
-                image.Save(Directory.GetCurrentDirectory()+"/wwwroot/" + picture.FileName);
+                image.Save(Directory.GetCurrentDirectory()+"/wwwroot/Images/" + picture.FileName);
 
                 _context.Picture.Add(picture);
                 await _context.SaveChangesAsync();

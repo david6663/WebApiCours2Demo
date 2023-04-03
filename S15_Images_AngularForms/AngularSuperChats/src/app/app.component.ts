@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 
 class Cat {
   constructor(
@@ -89,12 +89,16 @@ export class AppComponent {
 
 
   /////////////////////////////////////////////
-  /////pour la version avec typescript
-  uploadPicture(file?:File):void{
-    if(file!=null && file!=undefined)
-    {let formData=new FormData();
-    formData.append('file', file, file.name);
+  @ViewChild("fileuploadviewchild",{static:false}) fileuploadviewchild?: ElementRef;
 
-    this.http.post<any>("https://localhost:7096/api/pictures", formData).subscribe(x=>{console.log(x);})}
+  uploadViewChild():void{
+    if(this.fileuploadviewchild!=undefined)
+    {
+      let file=this.fileuploadviewchild.nativeElement.files[0];
+      let formData=new FormData();
+      formData.append('image',file,file.name);   /////Attention dans les notes de cours, c'est 'file', mais faut être la même que dans webapi, qui est 'image'
+
+      this.http.post<any>("https://localhost:7096/api/pictures", formData).subscribe(x=>{ console.log(x)});
+    }
   }
 }
